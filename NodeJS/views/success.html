@@ -1,0 +1,37 @@
+<html>
+
+<body>
+
+
+<% if(temp == "1"){
+%>
+<script>
+    alert("Login Success");
+    window.location = "/professorHome"
+</script>
+<%
+}else if(temp == "3"){
+%>
+<script>
+    alert("Login Failed");
+    window.location = "/login"
+</script>
+<%
+}else if(temp == "2"){
+%>
+<script>
+    alert("Login Success");
+    window.location = "/home"
+</script>
+<%
+}else if(temp == "4"){
+%>
+
+<script>
+    alert("Test successfully created");
+    window.location = "/professorHome"
+</script>
+<%
+} %>
+</body>
+</html>

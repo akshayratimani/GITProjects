@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <title>Home</title>
+
+
+</head>
+<body>
+
+
+<script>
+    function disp() {
+        var div = document.getElementById('div1');
+        div.style.display = "block";
+        document.getElementById('btn1').style.display = "none";
+    }
+
+</script>
+
+<div class="container-fluid">
+
+    <h1 style="color: darkcyan">LMS</h1>
+    <hr>
+    <%
+    if(session){
+    %>
+    <div style="position: absolute;left: 1120px;top: 18px">
+        <span style="color: darkcyan">Signed in as: <b><%= un %></b></span>
+    </div>
+    <div style="position: absolute; left: 1300px; top:15px">
+        <a href="/logout">
+            <button class="btn btn-primary"> Logout</button>
+        </a>
+    </div>
+    <%
+    }else{
+    %>
+    <div style="position:absolute; left:1200px; top:15px;">
+        <a href="/signup">
+            <button class="btn btn-primary">Register</button>
+        </a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="/login">
+            <button class="btn btn-primary">Login</button>
+        </a>
+    </div>
+    <%
+    }
+    %>
+    <br>
+</div>
+<div class="container-fluid" id="btn1">
+    <button class="btn btn-secondary" onclick="disp()">Create Test</button>
+</div>
+<br>
+<br>
+<div class="container-fluid" id="div1" style="display: none;position: absolute;top: 80px;">
+
+    <form method="post" action="/createTest" enctype="application/x-www-form-urlencoded">
+        <b>
+            <label class="dropper-form-label">Enter test name:</label>
+            <input type="text" name="tname" required> <br><br>
+            <label>Upload the excel file:</label>
+            <input type="file" name="file" required>
+        </b>
+        <font size="2px">
+            <p><b>*Note*</b><a href="/download"> <label>Click here to download sample Question and Answer excel
+                file</label>
+            </a><br>Uploaded file's format should be as same as the sample file.</p>
+        </font>
+        <br>
+        <input type="submit" class="btn btn-primary">
+    </form>
+
+</div>
+</body>
+</html>
