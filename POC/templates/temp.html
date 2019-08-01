@@ -1,0 +1,13 @@
+{% include 'base.html' %}
+
+{% block content %}
+    <script>
+        {% if data == 'true' %}
+            alert('Login Successful');
+        {% elif data == 'false' %}
+            alert('Login Failed');
+        {% elif data == 'reg' %}
+            alert('Registration successful');
+        {% endif %}
+    </script>
+{% endblock %}
