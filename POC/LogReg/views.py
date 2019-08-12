@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from LogReg import models
+from .models import User
 
 
 def home(request):
@@ -13,10 +15,11 @@ def login(request):
 def login_Post(request):
     val1 = request.POST['un']
     val2 = request.POST['pwd']
-    if val1 == 'Virat18' and val2 == 'kohli':
+    try:
+        User.objects.get(username=val1, password=val2)
         return render(request, 'temp.html', {'data': 'true'})
-
-    return render(request, 'temp.html', {'data': 'false'})
+    except User.DoesNotExist:
+        return render(request, 'temp.html', {'data': 'false'})
 
 
 def register(request):
@@ -29,4 +32,7 @@ def register_post(request):
     username = request.POST['un']
     pwd = request.POST['pwd']
     print('Registered user:\nName:', name, '\nEmail:', email, '\nUsername:', username)
+
+    User.objects.create(name=name, email=email, username=username, password=pwd)
+
     return render(request, 'temp.html', {'data': 'reg'})
