@@ -4,10 +4,22 @@
     <script>
         {% if data == 'true' %}
             alert('Login Successful');
+            window.location.href = "/home";
         {% elif data == 'false' %}
             alert('Login Failed');
+            window.location.href = "/login";
         {% elif data == 'reg' %}
             alert('Registration successful');
+            window.location.href = "/home";
+        {% elif data == 'IntErr'  %}
+            alert('Username / Password already exists');
+            window.location.href = "/register";
+        {% elif data == 'abp_IntErr'  %}
+            alert('Book already exists');
+            window.location.href = "/home";
+        {% elif data == 'abp_success'  %}
+            alert('Book Successfully added');
+            window.location.href = "/home";
         {% endif %}
     </script>
 {% endblock %}

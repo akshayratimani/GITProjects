@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid">
+        <h1>Library Management</h1>
+        <hr>
+        {% if request.session.username == null %}
+            <div style="position: absolute;left: 1200px;top: 40px">
+                <a href="/login" class="btn btn-primary">LOGIN</a>
+                <a href="/register" class="btn btn-primary">REGISTER</a>
+            </div>
+        {% else %}
+            <div style="position: absolute;left: 1100px;top: 40px;width: 300px">
+                <label> Welcome <b>{{ request.session.username }}</b></label>
+                <a style="float: right" href="/logout" class="btn btn-primary">LOGOUT</a>
+            </div>
+
+            <form action="/add_book_post/" method="post">
+                {% csrf_token %}
+                <div class="md-form" style="width: 300px">
+                    <h4>Enter Book Details</h4><br>
+                    <table style="border-collapse:separate;border-spacing:0 15px;">
+                        <tr>
+                            <td>Name:</td>
+                            <td><input class="form-control" type="text" name="name" required></td>
+                        </tr>
+                        <tr>
+                            <td>Author:</td>
+                            <td><input class="form-control" type="text" name="author" required></td>
+                        </tr>
+                        <tr>
+                            <td>No of copies:</td>
+                            <td><input class="form-control" type="text" name="copies" required></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <center><input class="btn btn-primary" type="submit" value="   Add   "></center>
+                </div>
+            </form>
+        {% endif %}
+
+
+    </div>
+{% endblock %}
